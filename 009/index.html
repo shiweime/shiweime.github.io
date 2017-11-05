@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="前言之前用过greenvpn，付了一年的年费75折花了大概108元，，结果用了大概半年服务就被迫关闭了，退了我60多块钱。(ps:退款要你自己取申请，不申请就不会退你)后来就在网上乱搜就发现了发现了一个叫“shadowsocks”的玩意，vpn代理方式有pptp,ipse啥的，我们可以简单将其理解类似于pptp等vpn新出的一种方式。这东西在网络切换下无缝续连，还加密混淆了数据，不易被GFW检测到">
+<meta property="og:type" content="article">
+<meta property="og:title" content="科学上网三部曲（二）--用国外vps搭建自己的代理服务器">
+<meta property="og:url" content="http://www.shiwei.me/009/index.html">
+<meta property="og:site_name" content="石伟同學">
+<meta property="og:description" content="前言之前用过greenvpn，付了一年的年费75折花了大概108元，，结果用了大概半年服务就被迫关闭了，退了我60多块钱。(ps:退款要你自己取申请，不申请就不会退你)后来就在网上乱搜就发现了发现了一个叫“shadowsocks”的玩意，vpn代理方式有pptp,ipse啥的，我们可以简单将其理解类似于pptp等vpn新出的一种方式。这东西在网络切换下无缝续连，还加密混淆了数据，不易被GFW检测到">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://owsjdg6am.bkt.clouddn.com/WHJXYST%7B2$X285R%7DJPT0_8P.png">
+<meta property="og:image" content="http://owsjdg6am.bkt.clouddn.com/UIU9%5B%7DAHYEZXX~~B5B6FH77.png">
+<meta property="og:image" content="http://owsjdg6am.bkt.clouddn.com/OZF%28%29U_R%5B%7D23CD4%25RJE%7BJ%5BW.png">
+<meta property="og:image" content="http://owsjdg6am.bkt.clouddn.com/RF%5DHZVB3LWESK%7BHF%7D2QY%5BOG.png">
+<meta property="og:image" content="http://owsjdg6am.bkt.clouddn.com/QJ%25A$RH1B147SHE$H3KI@CY.png">
+<meta property="og:image" content="http://owsjdg6am.bkt.clouddn.com/%7BMWEY$RCVZ6%25PLZJJ0D4VS7.png">
+<meta property="og:image" content="http://owsjdg6am.bkt.clouddn.com/IMG_0812.PNG">
+<meta property="og:image" content="http://owsjdg6am.bkt.clouddn.com/IMG_0814.PNG">
+<meta property="og:updated_time" content="2017-11-03T08:28:02.589Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="科学上网三部曲（二）--用国外vps搭建自己的代理服务器">
+<meta name="twitter:description" content="前言之前用过greenvpn，付了一年的年费75折花了大概108元，，结果用了大概半年服务就被迫关闭了，退了我60多块钱。(ps:退款要你自己取申请，不申请就不会退你)后来就在网上乱搜就发现了发现了一个叫“shadowsocks”的玩意，vpn代理方式有pptp,ipse啥的，我们可以简单将其理解类似于pptp等vpn新出的一种方式。这东西在网络切换下无缝续连，还加密混淆了数据，不易被GFW检测到">
+<meta name="twitter:image" content="http://owsjdg6am.bkt.clouddn.com/WHJXYST%7B2$X285R%7DJPT0_8P.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.2',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://www.shiwei.me/009/"/>
+
+
+
+
+
+  <title>科学上网三部曲（二）--用国外vps搭建自己的代理服务器 | 石伟同學</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">石伟同學</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">面朝大海 春暖花开</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-calendar-o"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.shiwei.me/009/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="石伟同學">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://owsjdg6am.bkt.clouddn.com/head.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="石伟同學">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">科学上网三部曲（二）--用国外vps搭建自己的代理服务器</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-27T15:07:07+08:00">
+                2017-10-27
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/科学上网/" itemprop="url" rel="index">
+                    <span itemprop="name">科学上网</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>之前用过greenvpn，付了一年的年费75折花了大概108元，，结果用了大概半年服务就被迫关闭了，退了我60多块钱。(ps:退款要你自己取申请，不申请就不会退你)<br>后来就在网上乱搜就发现了发现了一个叫“shadowsocks”的玩意，vpn代理方式有pptp,ipse啥的，我们可以简单将其理解类似于pptp等vpn新出的一种方式。这东西在网络切换下无缝续连，还加密混淆了数据，不易被GFW检测到，收到很多人追捧。接下来就记录我搭建的过程吧。</p>
+<a id="more"></a>
+<h2 id="准备工具"><a href="#准备工具" class="headerlink" title="准备工具"></a>准备工具</h2><ul>
+<li>可联网的手机或者电脑。</li>
+<li>有钱的支付宝</li>
+</ul>
+<h2 id="操作"><a href="#操作" class="headerlink" title="操作"></a>操作</h2><ol>
+<li>注册搬瓦工账号<br>其实有很多其他的国外vps服务商替换，但我自己只用过搬瓦工的，所以就说搬瓦工吧。到官网注册一个账号：<a href="http://www.bwh1.net" target="_blank" rel="external">搬瓦工官网</a> ,过程很简单，就不废话了。</li>
+<li>购买vps,用支付宝支付。<br>购买最小的512M内存的，2.99/月，19.9/年。<br><img src="http://owsjdg6am.bkt.clouddn.com/WHJXYST%7B2$X285R%7DJPT0_8P.png" alt="搬瓦工" title="2017-10-27"><br>进入后台面板<br><img src="http://owsjdg6am.bkt.clouddn.com/UIU9%5B%7DAHYEZXX~~B5B6FH77.png" alt="搬瓦工" title="2017-10-27"><br><img src="http://owsjdg6am.bkt.clouddn.com/OZF%28%29U_R%5B%7D23CD4%25RJE%7BJ%5BW.png" alt="搬瓦工" title="2017-10-27"><br>获取ip（67.216.219.215）,链接端口（29941），root密码（购买成功时会发你）<br><img src="http://owsjdg6am.bkt.clouddn.com/RF%5DHZVB3LWESK%7BHF%7D2QY%5BOG.png" alt="搬瓦工" title="2017-10-27"></li>
+<li>连接vps<br>下载连接工具putty，<a href="http://pan.baidu.com/s/1bpvth75" target="_blank" rel="external">putty百度云下载——密码:9qcg</a> ，用putty,连接vps。<br><img src="http://owsjdg6am.bkt.clouddn.com/QJ%25A$RH1B147SHE$H3KI@CY.png" alt="putty链接vps" title="2017-10-27"><br>输入账户名称和密码(密码不可见)，并按回车<br><img src="http://owsjdg6am.bkt.clouddn.com/%7BMWEY$RCVZ6%25PLZJJ0D4VS7.png" alt="putty链接vps" title="2017-10-27"></li>
+<li>配置shadowsocks<br>输入下方脚本<br>yum -y install wget<br>wget –no-check-certificate <a href="https://raw.githubusercontent.com/teddysun/shadowsocks_install/master/shadowsocks.sh" target="_blank" rel="external">https://raw.githubusercontent.com/teddysun/shadowsocks_install/master/shadowsocks.sh</a><br>按回车键。下方我是用手机做的，和电脑上的操作一样，不必纠结。<br><img src="http://owsjdg6am.bkt.clouddn.com/IMG_0812.PNG" alt="安装shadowsocks" title="2017-10-27"><br>输入1，安装shadowsocks,接下来脚本会逐步地配置节点信息，可以自定义。不知道的话就一路按回车键就好了。<br>你会得到四个值，分别是ss，ssr,ss的二维码，ssr的二维码。</li>
+<li>节点加速<br>输入bash ssr.sh，在出来的菜单中选择14其他功能，子菜单中会出现锐速的配置，这也是傻瓜式的。我就不多说了。<br><img src="http://owsjdg6am.bkt.clouddn.com/IMG_0814.PNG" alt="节点加速" title="2017-10-27"><h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2>这样的教程网上有很多，个人建议去看doub.io的教程，很详细。之前搭建时候没有想过写博客所以没有多少截图，一些图是后来特意补充的。自己去折腾吧。</li>
+</ol>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/002/" rel="next" title="陪我度过大半个大学的一个app">
+                <i class="fa fa-chevron-left"></i> 陪我度过大半个大学的一个app
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/010/" rel="prev" title="屏幕ocr识别软件">
+                屏幕ocr识别软件 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          
+            <img class="site-author-image" itemprop="image"
+              src="http://owsjdg6am.bkt.clouddn.com/head.png"
+              alt="石伟同學" />
+          
+            <p class="site-author-name" itemprop="name">石伟同學</p>
+            <p class="site-description motion-element" itemprop="description">技术博客，记录生活</p>
+        </div>
+
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+            
+              <a href="/archives/">
+            
+                <span class="site-state-item-count">9</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#准备工具"><span class="nav-number">2.</span> <span class="nav-text">准备工具</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#操作"><span class="nav-number">3.</span> <span class="nav-text">操作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">4.</span> <span class="nav-text">总结</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        ﻿<div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">石伟同學</span>
+
+  
+</div>
+
+
+  <span class="post-meta-divider">
+       <a  href="http://shiwei.me">首页</a>&nbsp;&nbsp;
+       <a  href="mailto:blog@shiwei.me">邮箱</a>&nbsp;&nbsp;
+       <a  href="https://github.com/shiweime">Github</a>&nbsp;&nbsp;
+       <a href="https://www.zhihu.com/people/shiwei9527">知乎</a>&nbsp;&nbsp;
+       <a  href="http://wpa.qq.com/msgrd?v=3&uin=1365025703&site=qq&menu=yes">QQ</a>
+</span>
+
+ 
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
+
+
+
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+  
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
