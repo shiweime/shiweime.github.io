@@ -84,7 +84,7 @@
 <meta property="og:image" content="http://owsjdg6am.bkt.clouddn.com/%7BMWEY$RCVZ6%25PLZJJ0D4VS7.png">
 <meta property="og:image" content="http://owsjdg6am.bkt.clouddn.com/IMG_0812.PNG">
 <meta property="og:image" content="http://owsjdg6am.bkt.clouddn.com/IMG_0814.PNG">
-<meta property="og:updated_time" content="2017-11-03T08:28:02.589Z">
+<meta property="og:updated_time" content="2017-11-13T16:22:34.661Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="科学上网三部曲（二）--用国外vps搭建自己的代理服务器">
 <meta name="twitter:description" content="前言之前用过greenvpn，付了一年的年费75折花了大概108元，，结果用了大概半年服务就被迫关闭了，退了我60多块钱。(ps:退款要你自己取申请，不申请就不会退你)后来就在网上乱搜就发现了发现了一个叫“shadowsocks”的玩意，vpn代理方式有pptp,ipse啥的，我们可以简单将其理解类似于pptp等vpn新出的一种方式。这东西在网络切换下无缝续连，还加密混淆了数据，不易被GFW检测到">
@@ -350,7 +350,7 @@
 <li>注册搬瓦工账号<br>其实有很多其他的国外vps服务商替换，但我自己只用过搬瓦工的，所以就说搬瓦工吧。到官网注册一个账号：<a href="http://www.bwh1.net" target="_blank" rel="external">搬瓦工官网</a> ,过程很简单，就不废话了。</li>
 <li>购买vps,用支付宝支付。<br>购买最小的512M内存的，2.99/月，19.9/年。<br><img src="http://owsjdg6am.bkt.clouddn.com/WHJXYST%7B2$X285R%7DJPT0_8P.png" alt="搬瓦工" title="2017-10-27"><br>进入后台面板<br><img src="http://owsjdg6am.bkt.clouddn.com/UIU9%5B%7DAHYEZXX~~B5B6FH77.png" alt="搬瓦工" title="2017-10-27"><br><img src="http://owsjdg6am.bkt.clouddn.com/OZF%28%29U_R%5B%7D23CD4%25RJE%7BJ%5BW.png" alt="搬瓦工" title="2017-10-27"><br>获取ip（67.216.219.215）,链接端口（29941），root密码（购买成功时会发你）<br><img src="http://owsjdg6am.bkt.clouddn.com/RF%5DHZVB3LWESK%7BHF%7D2QY%5BOG.png" alt="搬瓦工" title="2017-10-27"></li>
 <li>连接vps<br>下载连接工具putty，<a href="http://pan.baidu.com/s/1bpvth75" target="_blank" rel="external">putty百度云下载——密码:9qcg</a> ，用putty,连接vps。<br><img src="http://owsjdg6am.bkt.clouddn.com/QJ%25A$RH1B147SHE$H3KI@CY.png" alt="putty链接vps" title="2017-10-27"><br>输入账户名称和密码(密码不可见)，并按回车<br><img src="http://owsjdg6am.bkt.clouddn.com/%7BMWEY$RCVZ6%25PLZJJ0D4VS7.png" alt="putty链接vps" title="2017-10-27"></li>
-<li>配置shadowsocks<br>输入下方脚本<br>yum -y install wget<br>wget –no-check-certificate <a href="https://raw.githubusercontent.com/teddysun/shadowsocks_install/master/shadowsocks.sh" target="_blank" rel="external">https://raw.githubusercontent.com/teddysun/shadowsocks_install/master/shadowsocks.sh</a><br>按回车键。下方我是用手机做的，和电脑上的操作一样，不必纠结。<br><img src="http://owsjdg6am.bkt.clouddn.com/IMG_0812.PNG" alt="安装shadowsocks" title="2017-10-27"><br>输入1，安装shadowsocks,接下来脚本会逐步地配置节点信息，可以自定义。不知道的话就一路按回车键就好了。<br>你会得到四个值，分别是ss，ssr,ss的二维码，ssr的二维码。</li>
+<li>配置shadowsocks<br>输入下方脚本<br>wget -N –no-check-certificate <a href="https://raw.githubusercontent.com/ToyoDAdoubi/doubi/master/ssr.sh" target="_blank" rel="external">https://raw.githubusercontent.com/ToyoDAdoubi/doubi/master/ssr.sh</a> &amp;&amp; chmod +x ssr.sh &amp;&amp; bash ssr.sh<br>按回车键。下方我是用手机做的，和电脑上的操作一样，不必纠结。<br><img src="http://owsjdg6am.bkt.clouddn.com/IMG_0812.PNG" alt="安装shadowsocks" title="2017-10-27"><br>输入1，安装shadowsocks,接下来脚本会逐步地配置节点信息，可以自定义。不知道的话就一路按回车键就好了。<br>你会得到四个值，分别是ss，ssr,ss的二维码，ssr的二维码。</li>
 <li>节点加速<br>输入bash ssr.sh，在出来的菜单中选择14其他功能，子菜单中会出现锐速的配置，这也是傻瓜式的。我就不多说了。<br><img src="http://owsjdg6am.bkt.clouddn.com/IMG_0814.PNG" alt="节点加速" title="2017-10-27"><h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2>这样的教程网上有很多，个人建议去看doub.io的教程，很详细。之前搭建时候没有想过写博客所以没有多少截图，一些图是后来特意补充的。自己去折腾吧。</li>
 </ol>
 
