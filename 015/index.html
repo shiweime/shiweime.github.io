@@ -69,17 +69,17 @@
 
 
 
-<meta name="description" content="前言关于悄悄话的破解的讨论，我首先在QQ贴吧发了帖(已被删除)，后来将详细的破解教程放在了我的知乎回答里。现在贴上知乎链接：QQ悄悄话破解-石伟同學的回答现在将知乎内容搬运到我的博客，下面是教程。">
+<meta name="description" content="前言有个app接入了移动支付，用户付费后并没有通知，我总是强迫症的去后台查询用户支付情况。我用过手机短信通知，实现了。但是短信sdk与我现有工程的包有冲突，每条短信还要1~3分钱的成本。于是我就想到用邮件来通知，需要的成本很低，只要注册一个不用的邮箱得到账号密码，每次用户付费成功后将支付信息发送到我常用邮箱就可以了。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="QQ悄悄话破解">
-<meta property="og:url" content="http://blog.shiwei.me/003/index.html">
+<meta property="og:title" content="为用户的每一笔支付加个邮件通知">
+<meta property="og:url" content="http://blog.shiwei.me/015/index.html">
 <meta property="og:site_name" content="石伟同學">
-<meta property="og:description" content="前言关于悄悄话的破解的讨论，我首先在QQ贴吧发了帖(已被删除)，后来将详细的破解教程放在了我的知乎回答里。现在贴上知乎链接：QQ悄悄话破解-石伟同學的回答现在将知乎内容搬运到我的博客，下面是教程。">
+<meta property="og:description" content="前言有个app接入了移动支付，用户付费后并没有通知，我总是强迫症的去后台查询用户支付情况。我用过手机短信通知，实现了。但是短信sdk与我现有工程的包有冲突，每条短信还要1~3分钱的成本。于是我就想到用邮件来通知，需要的成本很低，只要注册一个不用的邮箱得到账号密码，每次用户付费成功后将支付信息发送到我常用邮箱就可以了。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-10-10T13:27:32.630Z">
+<meta property="og:updated_time" content="2018-02-04T08:15:38.227Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="QQ悄悄话破解">
-<meta name="twitter:description" content="前言关于悄悄话的破解的讨论，我首先在QQ贴吧发了帖(已被删除)，后来将详细的破解教程放在了我的知乎回答里。现在贴上知乎链接：QQ悄悄话破解-石伟同學的回答现在将知乎内容搬运到我的博客，下面是教程。">
+<meta name="twitter:title" content="为用户的每一笔支付加个邮件通知">
+<meta name="twitter:description" content="前言有个app接入了移动支付，用户付费后并没有通知，我总是强迫症的去后台查询用户支付情况。我用过手机短信通知，实现了。但是短信sdk与我现有工程的包有冲突，每条短信还要1~3分钱的成本。于是我就想到用邮件来通知，需要的成本很低，只要注册一个不用的邮箱得到账号密码，每次用户付费成功后将支付信息发送到我常用邮箱就可以了。">
 
 
 
@@ -109,13 +109,13 @@
 
 
 
-  <link rel="canonical" href="http://blog.shiwei.me/003/"/>
+  <link rel="canonical" href="http://blog.shiwei.me/015/"/>
 
 
 
 
 
-  <title>QQ悄悄话破解 | 石伟同學</title>
+  <title>为用户的每一笔支付加个邮件通知 | 石伟同學</title>
   
 
 
@@ -242,7 +242,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.shiwei.me/003/">
+    <link itemprop="mainEntityOfPage" href="http://blog.shiwei.me/015/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="石伟同學">
@@ -259,7 +259,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">QQ悄悄话破解</h1>
+          <h1 class="post-title" itemprop="name headline">为用户的每一笔支付加个邮件通知</h1>
         
 
         <div class="post-meta">
@@ -271,8 +271,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-26T15:07:07+08:00">
-                2017-09-26
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-04T15:38:07+08:00">
+                2018-02-04
               </time>
             
 
@@ -294,8 +294,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/破解/" itemprop="url" rel="index">
-                    <span itemprop="name">破解</span>
+                  <a href="/categories/编程/" itemprop="url" rel="index">
+                    <span itemprop="name">编程</span>
                   </a>
                 </span>
 
@@ -331,32 +331,15 @@
       
 
       
-        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>关于悄悄话的破解的讨论，我首先在QQ贴吧发了帖(已被删除)，后来将详细的破解教程放在了我的知乎回答里。现在贴上知乎链接：<a href="https://www.zhihu.com/question/26198574/answer/115734699" target="_blank" rel="external">QQ悄悄话破解-石伟同學的回答</a><br>现在将知乎内容搬运到我的博客，下面是教程。<br><a id="more"></a></p>
-<h2 id="准备工具"><a href="#准备工具" class="headerlink" title="准备工具"></a>准备工具</h2><ul>
-<li>版本为5.1.0的qq安卓版客户端（旧版本不好找，一些应用商店的历史版本里面可以找，如pp助手）。</li>
-<li>已root的安卓版手机一枚。</li>
-<li>安卓版数据库编辑器（百度搜网上有很多）。</li>
-</ul>
-<h2 id="操作"><a href="#操作" class="headerlink" title="操作"></a>操作</h2><ol>
-<li>qq登陆，并且消息列表有匿名者发你的消息（悄悄话信息不要删除）</li>
-<li>打开数据库编辑器，给予其root权限。首先进入date/date/com.tencent.mobileqq/databases，这一部分的目录是固定的，再打开数据库你的qq.db。 你qq若是12345，数据库名字便是12345.db。</li>
-<li>打开表SecMsgSession.里面每一行数据对应着一组qq匿名对话。找到你要找的一行数据（如果有多条，把其他的匿名对话给删，剩下的就是你要找的），更改属性值mySuid为1（1表示我向其他人发匿名，2表示他人向我发匿名），更改后保存数据并退出编辑器软件。</li>
-<li>进入qq，在消息列表中点击QQ悄悄话并进入（如果你看了视频会发现有个退出qq的操作，其实这一步可有可无，因为从消息列表点击悄悄话进去会有加载，这一步已经有数据的刷新）。</li>
-<li>你会发现对方的头像和昵称会显示出来，自己头像变成匿名者。权利反转的赶脚，不过这是假的权利反转。此时你们都知道对方是谁。</li>
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>有个app接入了移动支付，用户付费后并没有通知，我总是强迫症的去后台查询用户支付情况。我用过手机短信通知，实现了。但是短信sdk与我现有工程的包有冲突，每条短信还要1~3分钱的成本。于是我就想到用邮件来通知，需要的成本很低，只要注册一个不用的邮箱得到账号密码，每次用户付费成功后将支付信息发送到我常用邮箱就可以了。<br><a id="more"></a></p>
+<h2 id="准备工具"><a href="#准备工具" class="headerlink" title="准备工具"></a>准备工具</h2><ol>
+<li>开发工具:eclipse</li>
+<li>开发语言:java</li>
+<li>系统硬件:pc一台，Android一台</li>
 </ol>
-<h2 id="提醒"><a href="#提醒" class="headerlink" title="提醒"></a>提醒</h2><ul>
-<li>你完全按照要求做并不能保证一定会找到对方。贴吧的跟帖中，只有一人表示可以。很多人说qq会闪退，不会闪退的也有很多人说对方信息无法显示出来。</li>
-<li>尽量用5.1.0 版本，用高的版本很可能闪退。</li>
-<li>数据库打开文件有人说是空的，说明你没有root或者编辑器没有赋予root权限。</li>
-</ul>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>总结网上的一些方法，发现不是很可行。</p>
-<ul>
-<li>用re文件管理器找pre开头文件，我发现根本找不到这个文件。</li>
-<li>将自己空间地址发给对方，对方大意没准点了呢。实际中发现无法识别链接，点不开。</li>
-<li>登陆webqq,我发现还是不可行。</li>
-<li>诈对方说自己已经晓得对方了，并结合说话风格识别。看运气，有可能找到对方。</li>
-</ul>
-<p>我自己尝试了从三个不同方法找到对方，上方教程说的是第一个方法。方法二需要一些套路和运气并且需要一些技术，只要套路够有很大几率会得到对方的手机型号和手机号码。第三个方法是个半残品。我发现了qq号和本地数据命名的一些规律，但只是冰山一角，还是无法得出对方。后2条方法最近会更。</p>
+<h2 id="源码"><a href="#源码" class="headerlink" title="源码"></a>源码</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">void SendMail(final String title1, final String body1) &#123;</div><div class="line">	new Thread() &#123;</div><div class="line">		@Override</div><div class="line">		public void run() &#123;</div><div class="line">			Mail sender = new Mail();</div><div class="line">			// 设置服务器地址和端口，网上搜的到</div><div class="line">			sender.setProperties(&quot;smtp.163.com&quot;, &quot;25&quot;);</div><div class="line">			// 分别设置发件人，邮件标题和文本内容</div><div class="line">			try &#123;</div><div class="line">				sender.setMessage(&quot;此处填上发送邮箱账户&quot;, title1, body1);</div><div class="line">				sender.setReceiver(new String[] &#123; &quot;此处填上接受信息邮箱账户&quot; &#125;);</div><div class="line">				sender.sendEmail(&quot;smtp.163.com&quot;, &quot;此处填上发送邮箱账户&quot;, &quot;此处填上发送邮箱账户密码&quot;);</div><div class="line">			&#125; catch (AddressException e) &#123;</div><div class="line">				e.printStackTrace();</div><div class="line">				// Log.e(&quot;wxl&quot;, &quot;AddressException&quot;, e);</div><div class="line">			&#125; catch (MessagingException e) &#123;</div><div class="line">				e.printStackTrace();</div><div class="line">				// Log.e(&quot;wxl&quot;, &quot;MessagingException&quot;, e);</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">	&#125;.start();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="依赖的包"><a href="#依赖的包" class="headerlink" title="依赖的包"></a>依赖的包</h2><p><a href="https://pan.baidu.com/s/1smatAUh" target="_blank" rel="external">csdn包百度云下载密码:6li9</a></p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>上文为邮箱发送方法，在支付回调方法中调用即可。</p>
 
       
     </div>
@@ -381,15 +364,15 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/014/" rel="next" title="撸一撸支付宝红包">
+                <i class="fa fa-chevron-left"></i> 撸一撸支付宝红包
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/005/" rel="prev" title="杂图">
-                杂图 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -517,7 +500,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#准备工具"><span class="nav-number">2.</span> <span class="nav-text">准备工具</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#操作"><span class="nav-number">3.</span> <span class="nav-text">操作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#提醒"><span class="nav-number">4.</span> <span class="nav-text">提醒</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">5.</span> <span class="nav-text">总结</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#准备工具"><span class="nav-number">2.</span> <span class="nav-text">准备工具</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#源码"><span class="nav-number">3.</span> <span class="nav-text">源码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#依赖的包"><span class="nav-number">4.</span> <span class="nav-text">依赖的包</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">5.</span> <span class="nav-text">总结</span></a></li></ol></div>
             
 
           </div>
