@@ -76,10 +76,14 @@
 <meta property="og:site_name" content="石伟同學">
 <meta property="og:description" content="前言有个app接入了移动支付，用户付费后并没有通知，我总是强迫症的去后台查询用户支付情况。我用过手机短信通知，实现了。但是短信sdk与我现有工程的包有冲突，每条短信还要1~3分钱的成本。于是我就想到用邮件来通知，需要的成本很低，只要注册一个不用的邮箱得到账号密码，每次用户付费成功后将支付信息发送到我常用邮箱就可以了。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-02-04T08:37:15.540Z">
+<meta property="og:image" content="http://owsjdg6am.bkt.clouddn.com/IMG_460613.png">
+<meta property="og:image" content="http://owsjdg6am.bkt.clouddn.com/2354346.png">
+<meta property="og:image" content="http://owsjdg6am.bkt.clouddn.com/IMG_4709.PNG">
+<meta property="og:updated_time" content="2018-02-06T05:44:10.927Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="为用户的每一笔支付加个邮件通知">
 <meta name="twitter:description" content="前言有个app接入了移动支付，用户付费后并没有通知，我总是强迫症的去后台查询用户支付情况。我用过手机短信通知，实现了。但是短信sdk与我现有工程的包有冲突，每条短信还要1~3分钱的成本。于是我就想到用邮件来通知，需要的成本很低，只要注册一个不用的邮箱得到账号密码，每次用户付费成功后将支付信息发送到我常用邮箱就可以了。">
+<meta name="twitter:image" content="http://owsjdg6am.bkt.clouddn.com/IMG_460613.png">
 
 
 
@@ -339,7 +343,8 @@
 </ol>
 <h2 id="源码"><a href="#源码" class="headerlink" title="源码"></a>源码</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">void SendMail(final String title1, final String body1) &#123;</div><div class="line">	new Thread() &#123;</div><div class="line">		@Override</div><div class="line">		public void run() &#123;</div><div class="line">			Mail sender = new Mail();</div><div class="line">			// 设置服务器地址和端口，网上搜的到</div><div class="line">			sender.setProperties(&quot;smtp.163.com&quot;, &quot;25&quot;);</div><div class="line">			// 分别设置发件人，邮件标题和文本内容</div><div class="line">			try &#123;</div><div class="line">				sender.setMessage(&quot;此处填上发送邮箱账户&quot;, title1, body1);</div><div class="line">				sender.setReceiver(new String[] &#123; &quot;此处填上接受信息邮箱账户&quot; &#125;);</div><div class="line">				sender.sendEmail(&quot;smtp.163.com&quot;, &quot;此处填上发送邮箱账户&quot;, &quot;此处填上发送邮箱账户密码&quot;);</div><div class="line">			&#125; catch (AddressException e) &#123;</div><div class="line">				e.printStackTrace();</div><div class="line">				// Log.e(&quot;wxl&quot;, &quot;AddressException&quot;, e);</div><div class="line">			&#125; catch (MessagingException e) &#123;</div><div class="line">				e.printStackTrace();</div><div class="line">				// Log.e(&quot;wxl&quot;, &quot;MessagingException&quot;, e);</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">	&#125;.start();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <h2 id="依赖的包"><a href="#依赖的包" class="headerlink" title="依赖的包"></a>依赖的包</h2><p><a href="https://pan.baidu.com/s/1smatAUh" target="_blank" rel="external">百度云下载密码:6li9</a></p>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>上文为邮箱发送方法，在支付回调方法中调用即可。</p>
+<h2 id="效果"><a href="#效果" class="headerlink" title="效果"></a>效果</h2><p><img src="http://owsjdg6am.bkt.clouddn.com/IMG_460613.png" alt="支付通知"><br><img src="http://owsjdg6am.bkt.clouddn.com/2354346.png" alt="支付通知"><br><img src="http://owsjdg6am.bkt.clouddn.com/IMG_4709.PNG" alt="支付通知"></p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>上文为邮箱发送方法，参数分别为标题和内容。在支付回调方法中调用即可。注意的是，标题和内容措辞得注意，因为很容易触发反垃圾规则，导致邮箱被收件邮箱服务器拒收。</p>
 
       
     </div>
@@ -500,7 +505,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#准备工具"><span class="nav-number">2.</span> <span class="nav-text">准备工具</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#源码"><span class="nav-number">3.</span> <span class="nav-text">源码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#依赖的包"><span class="nav-number">4.</span> <span class="nav-text">依赖的包</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">5.</span> <span class="nav-text">总结</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#准备工具"><span class="nav-number">2.</span> <span class="nav-text">准备工具</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#源码"><span class="nav-number">3.</span> <span class="nav-text">源码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#依赖的包"><span class="nav-number">4.</span> <span class="nav-text">依赖的包</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#效果"><span class="nav-number">5.</span> <span class="nav-text">效果</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">6.</span> <span class="nav-text">总结</span></a></li></ol></div>
             
 
           </div>
